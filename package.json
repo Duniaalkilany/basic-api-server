@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "jest --coverage --verbose"
+    "test": "jest --force-exit --detectOpenHandles",
+    "test:watch": "jest --watch --detectOpenHandles",
+    "test:cov": "jest --coverage --force-exit --detectOpenHandles"
   },
   "repository": {
     "type": "git",
