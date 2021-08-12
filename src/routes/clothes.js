@@ -15,40 +15,52 @@ router.delete('/clothes/:id', deleteClothes);
 
 // RESTful route handlers
 
-async function getClothes(req, res) {
-    let getAllClothes =await Clothes.findAll();
+ function getClothes(req, res) {
+    let getAllClothes = Clothes.findAll();
     res.status(200).json(getAllClothes);
   }
   
-  async function getOneClothes(req, res) {
+  function getOneClothes(req, res) {
 let id = parseInt(req.params.id);
-    let onecloth = await Clothes.findOne({ where: {id: id} });
+    let onecloth =  Clothes.findOne({ where: {id: id} });
     res.status(200).json(onecloth);
   }
   
- async function createClothes(req, res) {
+ function createClothes(req, res) {
     let obj = req.body;
-    let  newCloth  =await Clothes.create(obj);
+    let  newCloth  = Clothes.create(obj);
     res.status(201).json( newCloth );
   }
   
-  async function updateClothes(req, res) {
-    let id = parseInt(req.params.id);
- let obj = req.body;
-     // find 
-     let found  =await Clothes.findOne({where: {id: id}});
+//   async function updateClothes(req, res) {
+//     let id = parseInt(req.params.id);
+//  const {color,material,countryOfManufacture} = obj
+//  let ;
+//      // find 
+//      let found  =await Clothes.findOne({where: {id: id}});
 
-   // update  + save
-    let updatedcloth = await found.update(obj);
+//    // update  + save
+//     let updatedcloth = await found.update(obj);
 
-    res.status(500).json(updatedcloth);
+//     res.status(200).json(updatedcloth);
 
 
+//   }
+
+
+  function updateClothes(req, res) {
+    const id = parseInt(req.params.id);
+    var values = {color:'red',material:'coton', countryOfManufacture:'turkey' };
+var condition = { where :{id:id} }; 
+
+
+    let updatedcloth = Clothes.update(values, condition )
+    res.status(200).json(updatedcloth);
   }
   
-  async function deleteClothes(req, res) {
+  function deleteClothes(req, res) {
     const id = parseInt(req.params.id);
-    let deletedCloth = await Clothes.destroy({where: {id: id}});
+    let deletedCloth = Clothes.destroy({where: {id: id}});
     res.status(204).json(deletedCloth);
   }
   
