@@ -1,5 +1,5 @@
 'use strict';
-const POSTGRES_URI ="postgres://localhost:5433/dunia"
+const POSTGRES_URI ="postgres://localhost:5432/dunia"
 
 const { Sequelize, DataTypes } = require('sequelize');
 const FoodModel= require('./food');
