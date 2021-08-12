@@ -41,7 +41,7 @@ let id = parseInt(req.params.id);
    // update  + save
     let updatedcloth = await found.update(obj);
 
-    res.status(500).json(updatedcloth);
+    res.status(200).json(updatedcloth);
 
 
   }
