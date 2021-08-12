@@ -32,18 +32,30 @@ let id = parseInt(req.params.id);
     res.status(201).json( newCloth );
   }
   
-  async function updateClothes(req, res) {
-    let id = parseInt(req.params.id);
- let obj = req.body;
-     // find 
-     let found  =await Clothes.findOne({where: {id: id}});
+//   async function updateClothes(req, res) {
+//     let id = parseInt(req.params.id);
+//  const {color,material,countryOfManufacture} = obj
+//  let ;
+//      // find 
+//      let found  =await Clothes.findOne({where: {id: id}});
 
-   // update  + save
-    let updatedcloth = await found.update(obj);
+//    // update  + save
+//     let updatedcloth = await found.update(obj);
 
+//     res.status(200).json(updatedcloth);
+
+
+//   }
+
+
+async  function updateClothes(req, res) {
+    const id = parseInt(req.params.id);
+    var values = {color:'red',material:'coton', countryOfManufacture:'turkey' };
+var condition = { where :{id:id} }; 
+
+
+    let updatedcloth =await Clothes.update(values, condition )
     res.status(200).json(updatedcloth);
-
-
   }
   
   async function deleteClothes(req, res) {

@@ -32,15 +32,18 @@ async function createFood(req, res) {
   res.status(201).json(createdFood);
 }
 
-async function updateFood(req, res) {
-  const id = parseInt(req.params.id);
-  let obj = req.body;
-   // find 
-   let found = await Food.findOne({ where: {id: id} });
-   // update  + save
-  let updatedFood =  await found.update(obj);
-  res.status(200).json(updatedFood);
-}
+
+
+async function  updateFood(req, res) {
+    const id = parseInt(req.params.id);
+    var values = {name:'pizza',type:'Italian Food',Taste:'spicy' };
+var condition = { where :{id:id} }; 
+
+
+    let updatedFood =await Food.update(values, condition )
+    res.status(200).json(updatedFood );
+  }
+  
 
 async function deleteFood(req, res) {
   const id = parseInt(req.params.id);

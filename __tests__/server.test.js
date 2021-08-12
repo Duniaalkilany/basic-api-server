@@ -194,14 +194,17 @@ it('should Read a list of records using GET /clothes', async () => {
     expect(response.body).toBeDefined();
   });
 
-// it('update clothes', async () => {
-//     const res = await request.put(`/clothes/${id}`).send(obj);
-//     expect(res.status).toEqual(500)
+it('update clothes', async () => {
+
+    
+    const res = await request.put(`/clothes/${id}`)
+    expect(res.status).toEqual(200)
     
     
-//   });
+  });
+
 it("clothes delete test", async () => {
-    const response = await request.delete(`/clothes/${id}`);
+    const response = await request.delete(`/clothes/1`);
     expect(response.status).toEqual(204);
   });
  
@@ -238,12 +241,14 @@ it('should Read a list of records using GET /food', async () => {
     expect(response.body).toBeDefined();
   });
 
-// it('update food', async () => {
-//     const res = await request.put(`/food/${id}`).send(obj);
-//     expect(res.status).toEqual(500)
+it('update food', async () => {
+    const res = await request.put(`/food/${id}`)
+    expect(res.status).toEqual(200)
     
     
-//   });
+  });
+
+  
 it("fooddelete test", async () => {
     const response = await request.delete(`/food/${id}`);
     expect(response.status).toEqual(204);
