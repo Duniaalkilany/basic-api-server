@@ -1,6 +1,6 @@
 'use strict';
-const POSTGRES_URI = process.env.NODEENV =="test" ? 'sqlite:memory ':  "postgres://localhost:5432/dunia";
-// const POSTGRES_URI = "postgres://localhost:5432/testing";
+const POSTGRES_URI = process.env.NODEENV =="test" ? 'sqlite:memory ': "postgres://username:pgpassword@db:5432/dunia" ;
+
 const { Sequelize, DataTypes } = require('sequelize');
 const FoodModel= require('./food');
 const  ClothesModel  = require('./clothes');
@@ -14,6 +14,6 @@ module.exports = {
 }
 
 
-
+// "postgres://localhost:5432/dunia"
 
 
