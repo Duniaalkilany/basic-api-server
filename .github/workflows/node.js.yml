@@ -1,27 +1,33 @@
 # This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Node.js CI
-
-on: [push]
-
+name: CI
+on:
+  push:
+    branches: [setup_github]
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [12.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
+  test:
+    runs-on: ubuntu-18.04
+    services:
+      postgres:
+        image: postgres:10
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
       with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+        ruby-version:  2.5.3
+    - uses: borales/actions-yarn@v2.0.2
+      with:
+        cmd: install
+    - name: Install Dependencies
+      run: |
+        sudo apt-get -yqq install libpq-dev
+    - name: Install Gems
+      run: |
+        gem install bundler
+    - name: prepare Database
+    - name: RSpec
+      run: |
+        bundle exec rspec specs
